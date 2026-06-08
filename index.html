@@ -5,7 +5,1259 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta name="description" content="SOMNIASANCTUM // A private, offline-first somatic vault and vibe engine.">
     <meta name="theme-color" content="#020204">
+    <meta name="apple-mobile-web-<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="description" content="SOMNIASANCTUM // A private, offline-first somatic vault and vibe engine.">
+    <meta name="theme-color" content="#020204">
     <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>SOMNIASANCTUM // SANCTUARY</title>
+    
+    <link rel="manifest" href="manifest.json">
+
+    <style>
+        /* ============================================================
+           SOMNIASANCTUM — SOMATIC VIBE ENGINE
+           Responsive • Soft • Expensive Glassmorphism • Hardware Accelerated
+           ============================================================ */
+        *, *::before, *::after { box-sizing: border-box; }
+
+        ::-webkit-scrollbar { width: 8px; height: 8px; }
+        ::-webkit-scrollbar-track { background: rgba(0, 0, 0, 0.2); border-radius: 10px; }
+        ::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, 0.15); border-radius: 10px; border: 1px solid rgba(0,0,0,0.3); }
+        ::-webkit-scrollbar-thumb:hover { background: var(--primary); }
+
+        :root, html {
+            --glass: rgba(15, 20, 30, 0.45);
+            --text-muted: #b5b0bb;
+            --bg-zoom: 1; --bg-bright: 0.85; --glow-opac: 0.3; --anim-speed: 10s;
+            --primary: #e0e7ff; --primary-glow: rgba(224, 231, 255, 0.5);
+            --accent: #a5b4fc; --glass-border: rgba(255, 255, 255, 0.12);
+            --text-main: #fdfbf7;
+            --particle-color: var(--primary); --glow-color: var(--primary-glow);
+        }
+
+        /* 20 Color Palettes */
+        .lunar-mode { --primary: #e0e7ff; --accent: #a5b4fc; --primary-glow: rgba(224,231,255,0.4); --glass-border: rgba(255,255,255,0.15); --text-main: #fdfbf7; }
+        .noir-mode { --primary: #D4AF37; --accent: #f59e0b; --primary-glow: rgba(212,175,55,0.4); --glass-border: rgba(212,175,55,0.2); --text-main: #F4EBD0; }
+        .vellum-mode { --primary: #C2B280; --accent: #d97706; --primary-glow: rgba(194,178,128,0.4); --glass-border: rgba(194,178,128,0.2); --text-main: #fefce8; }
+        .amethyst-mode { --primary: #d8b4e2; --accent: #2dd4bf; --primary-glow: rgba(216,180,226,0.4); --glass-border: rgba(216,180,226,0.2); --text-main: #e9d5ff; }
+        .crimson-mode { --primary: #fb7185; --accent: #be123c; --primary-glow: rgba(251,113,133,0.4); --glass-border: rgba(251,113,133,0.2); --text-main: #fecaca; }
+        .emerald-mode { --primary: #34d399; --accent: #065f46; --primary-glow: rgba(52,211,153,0.4); --glass-border: rgba(52,211,153,0.2); --text-main: #d1fae5; }
+        .solar-mode { --primary: #fbbf24; --accent: #d97706; --primary-glow: rgba(251,191,36,0.4); --glass-border: rgba(251,191,36,0.2); --text-main: #fef3c7; }
+        .void-mode { --primary: #ec4899; --accent: #8b5cf6; --primary-glow: rgba(236,72,153,0.4); --glass-border: rgba(236,72,153,0.2); --text-main: #fbcfe8; }
+        .obsidian-mode { --primary: #9ca3af; --accent: #4b5563; --primary-glow: rgba(156,163,175,0.4); --glass-border: rgba(156,163,175,0.2); --text-main: #f3f4f6; }
+        .ghost-mode { --primary: #f8fafc; --accent: #cbd5e1; --primary-glow: rgba(248,250,252,0.4); --glass-border: rgba(248,250,252,0.2); --text-main: #ffffff; }
+        .gothic-mode { --primary: #881337; --accent: #4c0519; --primary-glow: rgba(136,19,55,0.4); --glass-border: rgba(136,19,55,0.2); --text-main: #e5e5e5; }
+        .library-mode { --primary: #78350f; --accent: #b45309; --primary-glow: rgba(120,53,15,0.4); --glass-border: rgba(120,53,15,0.2); --text-main: #fef3c7; }
+        .y2k-mode { --primary: #22d3ee; --accent: #e879f9; --primary-glow: rgba(34,211,238,0.4); --glass-border: rgba(232,121,249,0.2); --text-main: #cffafe; }
+        .vintage-mode { --primary: #57534e; --accent: #7f1d1d; --primary-glow: rgba(87,83,78,0.4); --glass-border: rgba(87,83,78,0.2); --text-main: #d6d3d1; }
+        .cyber-mode { --primary: #84cc16; --accent: #166534; --primary-glow: rgba(132,204,22,0.4); --glass-border: rgba(132,204,22,0.2); --text-main: #ecfccb; }
+        .twilight-mode { --primary: #312e81; --accent: #4c1d95; --primary-glow: rgba(49,46,129,0.4); --glass-border: rgba(49,46,129,0.2); --text-main: #e0e7ff; }
+        .autumn-mode { --primary: #ea580c; --accent: #9a3412; --primary-glow: rgba(234,88,12,0.4); --glass-border: rgba(234,88,12,0.2); --text-main: #ffedd5; }
+        .abyss-mode { --primary: #0891b2; --accent: #0f766e; --primary-glow: rgba(8,145,178,0.4); --glass-border: rgba(8,145,178,0.2); --text-main: #cffafe; }
+        .sepia-mode { --primary: #b45309; --accent: #78350f; --primary-glow: rgba(180,83,9,0.4); --glass-border: rgba(180,83,9,0.2); --text-main: #fef3c7; }
+        .frost-mode { --primary: #bae6fd; --accent: #38bdf8; --primary-glow: rgba(186,230,253,0.4); --glass-border: rgba(186,230,253,0.2); --text-main: #f0f9ff; }
+
+        body, html { margin: 0; padding: 0; background: #050508; overflow: hidden; font-family: 'Georgia', serif; height: 100dvh; width: 100vw; color: var(--text-main); -webkit-font-smoothing: antialiased; user-select: none; }
+        input, textarea, select { user-select: auto; font-family: inherit; }
+
+        /* --- BOOT SCREEN --- */
+        #boot-screen { position: fixed; inset: 0; z-index: 9999; background: rgba(10, 10, 15, 0.9); backdrop-filter: blur(40px); display: flex; flex-direction: column; align-items: center; justify-content: center; transition: opacity 1.5s ease-in-out; }
+        .kore-orb { position: absolute; width: 350px; height: 350px; background: radial-gradient(circle, var(--primary-glow) 0%, transparent 70%); animation: orb-breathe 5s infinite alternate ease-in-out; z-index: -1; pointer-events: none; transform: translateZ(0); }
+        @keyframes orb-breathe { 0% { transform: scale(0.8); opacity: 0.4; filter: hue-rotate(0deg); } 100% { transform: scale(1.3); opacity: 0.9; filter: hue-rotate(15deg); } }
+        .boot-content { width: 90%; max-width: 750px; padding: 50px 30px; text-align: center; border: 1px solid var(--glass-border); border-radius: 40px; background: rgba(255,255,255,0.03); box-shadow: 0 40px 80px rgba(0,0,0,0.6); position: relative; z-index: 10; backdrop-filter: blur(20px); }
+        
+        .boot-title { color: var(--primary); font-size: clamp(1.2rem, 4vw, 2.2rem); letter-spacing: 6px; margin: 0 0 20px 0; text-align: center; text-shadow: 0 0 30px var(--primary-glow); text-transform: uppercase; font-family: 'Times New Roman', serif; word-wrap: break-word; line-height: 1.4; }
+        .boot-disclaimer { color: var(--text-main); font-size: 1.05rem; line-height: 1.8; letter-spacing: 1px; margin-bottom: 35px; font-family: 'Georgia', serif; font-style: italic; opacity: 0.9; }
+
+        /* --- VISUAL CANVAS & GLOWS --- */
+        #bg-anchor { position: fixed; inset: 0; background-color: #050508; background-image: url('sanctum.png'); background-size: cover; background-position: center center; background-repeat: no-repeat; z-index: 1; transform: scale(var(--bg-zoom)) translateZ(0); filter: brightness(var(--bg-bright)); transition: background 1.5s ease, filter 0.5s ease, transform 0.5s ease; }
+        #glow-layer { position: fixed; inset: 0; background: radial-gradient(circle at 50% 50%, var(--glow-color) 0%, transparent 70%); z-index: 2; opacity: var(--glow-opac); pointer-events: none; transition: opacity 0.5s ease, background 1.5s ease; transform: translateZ(0); }
+        
+        .glow-pulse { animation: g-pulse var(--anim-speed) infinite alternate ease-in-out; }
+        .glow-breathe { animation: g-breathe var(--anim-speed) infinite alternate ease-in-out; }
+        .glow-strobe { animation: g-strobe var(--anim-speed) infinite alternate linear; }
+        .glow-phantom { animation: g-phantom var(--anim-speed) infinite alternate ease-in-out; }
+        .glow-wave { animation: g-wave var(--anim-speed) infinite alternate linear; }
+        .glow-flicker { animation: g-flicker calc(var(--anim-speed) / 4) infinite alternate ease-in-out; }
+        .glow-aurora { background: linear-gradient(45deg, var(--primary-glow), transparent); animation: g-pulse var(--anim-speed) infinite alternate ease-in-out; }
+        .glow-radar { background: conic-gradient(from 0deg, transparent, var(--primary-glow), transparent); animation: g-wave var(--anim-speed) infinite linear; }
+        .glow-static { animation: none; } .glow-none { opacity: 0 !important; }
+        .glow-heartbeat { animation: g-heartbeat calc(var(--anim-speed) / 3) infinite alternate cubic-bezier(0.4, 0, 0.6, 1); }
+        .glow-shimmer { animation: g-shimmer calc(var(--anim-speed) / 2) infinite alternate linear; background: linear-gradient(135deg, transparent, var(--glow-color), transparent); }
+        .glow-glitch { animation: g-glitch calc(var(--anim-speed) / 5) infinite linear; }
+        .glow-scanner { background: linear-gradient(to bottom, transparent, var(--glow-color), transparent); animation: g-scanner var(--anim-speed) infinite linear; }
+        .glow-nebula { background: radial-gradient(ellipse at center, var(--glow-color) 0%, transparent 80%); animation: g-nebula var(--anim-speed) infinite alternate ease-in-out; }
+        .glow-vortex { background: conic-gradient(from 180deg, var(--glow-color), transparent); animation: g-wave calc(var(--anim-speed) * 1.5) infinite linear reverse; }
+        .glow-ripple { animation: g-ripple var(--anim-speed) infinite ease-out; }
+        .glow-halo { background: radial-gradient(circle, transparent 40%, var(--glow-color) 60%, transparent 80%); animation: g-pulse var(--anim-speed) infinite alternate ease-in-out; }
+        .glow-eclipse { background: radial-gradient(circle, #000 30%, var(--glow-color) 70%, transparent 100%); animation: g-breathe var(--anim-speed) infinite alternate ease-in-out; }
+        .glow-inferno { background: radial-gradient(circle at bottom, var(--glow-color) 0%, transparent 70%); animation: g-flicker calc(var(--anim-speed) / 3) infinite alternate ease-in-out; }
+
+        @keyframes g-pulse { 0% { transform: scale(1); opacity: calc(var(--glow-opac) * 0.5); } 100% { transform: scale(1.1); opacity: var(--glow-opac); } }
+        @keyframes g-breathe { 0%, 100% { filter: brightness(0.8); } 50% { filter: brightness(1.2); } }
+        @keyframes g-strobe { 0%, 49% { opacity: var(--glow-opac); } 50%, 100% { opacity: 0; } }
+        @keyframes g-phantom { 0% { transform: translateY(-5%); opacity: 0; } 50% { opacity: var(--glow-opac); } 100% { transform: translateY(5%); opacity: 0; } }
+        @keyframes g-wave { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+        @keyframes g-flicker { 0%, 100% { opacity: var(--glow-opac); } 33% { opacity: calc(var(--glow-opac) * 0.3); } 66% { opacity: calc(var(--glow-opac) * 0.8); } }
+        @keyframes g-heartbeat { 0%, 100% { transform: scale(1); opacity: calc(var(--glow-opac) * 0.6); } 10%, 30% { transform: scale(1.05); opacity: var(--glow-opac); } 20% { transform: scale(1); opacity: calc(var(--glow-opac) * 0.8); } }
+        @keyframes g-shimmer { 0% { transform: translateX(-50%); } 100% { transform: translateX(50%); } }
+        @keyframes g-glitch { 0%, 100% { transform: translate(0, 0); opacity: var(--glow-opac); } 10% { transform: translate(-5px, 5px); opacity: calc(var(--glow-opac) * 0.5); } 20% { transform: translate(5px, -5px); opacity: var(--glow-opac); } }
+        @keyframes g-scanner { 0% { transform: translateY(-100%); } 100% { transform: translateY(100%); } }
+        @keyframes g-nebula { 0% { filter: hue-rotate(0deg); transform: scale(1); } 100% { filter: hue-rotate(45deg); transform: scale(1.2); } }
+        @keyframes g-ripple { 0% { transform: scale(0.5); opacity: var(--glow-opac); } 100% { transform: scale(2); opacity: 0; } }
+
+        #particleCanvas { position: fixed; inset: 0; z-index: 3; pointer-events: none; opacity: var(--glow-opac); transition: opacity 0.5s ease; transform: translateZ(0); }
+
+        /* --- UI LAYOUT & WIDGETS --- */
+        #ui-wrapper { position: relative; z-index: 100; height: 100dvh; width: 100vw; transition: opacity 0.8s ease; }
+        body.cloaked #ui-wrapper { opacity: 0; pointer-events: none; }
+        .nav-logo { font-size: 1.3rem; letter-spacing: 6px; color: var(--primary); text-transform: uppercase; text-shadow: 0 0 20px var(--primary-glow); font-family: 'Times New Roman', serif; position: absolute; top: 30px; left: 35px; z-index: 200; }
+        #top-nav { position: absolute; top: 25px; right: 35px; display: flex; gap: 15px; align-items: center; z-index: 200; flex-wrap: wrap; justify-content: flex-end;}
+
+        .artifact-btn { background: rgba(0,0,0,0.3); backdrop-filter: blur(15px); border: 1px solid var(--glass-border); color: var(--primary); padding: 10px 22px; border-radius: 50px; cursor: pointer; font-size: 0.7rem; letter-spacing: 2px; text-transform: uppercase; transition: all 0.4s ease; font-family: monospace; box-shadow: 0 4px 15px rgba(0,0,0,0.2); }
+        .artifact-btn:hover { border-color: var(--accent); color: #fff; box-shadow: 0 0 20px var(--primary-glow); transform: translateY(-2px); background: rgba(255,255,255,0.05); }
+
+        .widget-dock { position: absolute; top: 120px; right: 35px; display: flex; flex-direction: column; gap: 20px; z-index: 90; }
+        .gorgeous-widget { background: rgba(10, 15, 25, 0.5); backdrop-filter: blur(25px); border: 1px solid var(--glass-border); border-radius: 30px; padding: 30px; text-align: center; box-shadow: 0 20px 50px rgba(0,0,0,0.5); min-width: 280px; position: relative; overflow: hidden; }
+        .gorgeous-widget::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, transparent, var(--primary), transparent); opacity: 0.5; }
+        .time-display { font-size: 4rem; font-weight: bold; letter-spacing: 5px; color: var(--primary); text-shadow: 0 0 25px var(--primary-glow); line-height: 1; margin-bottom: 5px; font-family: 'Times New Roman', serif;}
+        .date-display { font-size: 1rem; font-family: monospace; color: var(--text-muted); text-transform: uppercase; letter-spacing: 4px; }
+
+        /* --- MAKER PANEL (VIBE ENGINE) --- */
+        #maker-panel { position: absolute; left: 35px; top: 90px; bottom: 35px; width: 420px; background: var(--glass); backdrop-filter: blur(35px); border: 1px solid var(--glass-border); border-radius: 30px; box-shadow: 0 20px 60px rgba(0,0,0,0.5); display: flex; flex-direction: column; overflow: hidden; z-index: 100; }
+        .tab-bar { display: flex; border-bottom: 1px solid var(--glass-border); background: rgba(0,0,0,0.2); flex-wrap: wrap; flex-shrink: 0; }
+        .tab-btn { flex: 1; min-width: 60px; background: transparent; border: none; color: var(--text-muted); padding: 15px 5px; font-size: 0.65rem; letter-spacing: 2px; text-transform: uppercase; cursor: pointer; transition: 0.3s; font-family: monospace; border-bottom: 2px solid transparent; }
+        .tab-btn.active { color: var(--accent); border-bottom-color: var(--accent); background: rgba(255,255,255,0.03); font-weight: bold; }
+        .tab-content { display: none; padding: 25px; overflow-y: auto; flex: 1; }
+        .tab-content.active { display: flex; flex-direction: column; gap: 15px; }
+
+        .btn-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(80px, 1fr)); gap: 10px; }
+        .toy-btn { background: rgba(0,0,0,0.3); border: 1px solid var(--glass-border); color: var(--text-main); padding: 12px; border-radius: 30px; cursor: pointer; font-size: 0.65rem; letter-spacing: 1px; text-transform: uppercase; transition: all 0.3s ease; font-family: monospace; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .toy-btn:hover { border-color: var(--accent); background: rgba(255,255,255,0.1); color: var(--text-main); box-shadow: 0 4px 10px rgba(0,0,0,0.2); }
+        .toy-btn.active { border-color: var(--primary); background: var(--primary); color: #000; font-weight: bold; box-shadow: 0 0 15px var(--primary-glow); }
+        h4.section-title { margin: 0 0 8px 0; font-size: 0.7rem; color: var(--primary); letter-spacing: 3px; text-transform: uppercase; opacity: 0.8; font-family: monospace; }
+        .ctrl-row { display: flex; align-items: center; justify-content: space-between; gap: 15px; background: rgba(0,0,0,0.2); padding: 10px 15px; border-radius: 50px; border: 1px solid transparent; transition: 0.3s; }
+        .ctrl-row label { font-size: 0.65rem; color: var(--text-muted); text-transform: uppercase; font-family: monospace; letter-spacing: 1px; width: 80px; }
+        .ctrl-slider { flex: 1; -webkit-appearance: none; height: 4px; background: rgba(255,255,255,0.15); outline: none; border-radius: 50px; accent-color: var(--primary); }
+        .ctrl-slider::-webkit-slider-thumb { -webkit-appearance: none; width: 14px; height: 14px; background: var(--primary); border-radius: 50%; cursor: pointer; }
+        
+        .upload-zone { border: 1px dashed var(--glass-border); padding: 18px; text-align: center; border-radius: 20px; cursor: pointer; color: var(--text-muted); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 2px; transition: 0.3s; background: rgba(0,0,0,0.1); display: block; width: 100%; font-family: monospace; }
+        .upload-zone:hover { background: rgba(255,255,255,0.08); color: var(--primary); border-color: var(--primary); transform: translateY(-2px); }
+        .upload-zone input { display: none; }
+
+        .mixer-card { display: flex; align-items: center; justify-content: space-between; padding: 12px 18px; background: rgba(255,255,255,0.03); border: 1px solid var(--glass-border); border-radius: 50px; gap: 8px; transition: all 0.3s ease; }
+        .mixer-card:hover { background: rgba(255,255,255,0.06); }
+        .mixer-card.playing { border-color: var(--accent); background: rgba(255,255,255,0.1); box-shadow: 0 0 15px rgba(0,0,0,0.2); }
+        .mixer-btn { background: none; border: none; color: var(--text-muted); font-size: 0.85rem; text-align: left; cursor: pointer; font-family: 'Georgia', serif; flex: 1; padding: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; transition: 0.3s; }
+        .mixer-card.playing .mixer-btn { color: var(--primary); text-shadow: 0 0 10px var(--primary-glow); font-style: italic; }
+        .mixer-slider { -webkit-appearance: none; width: 60px; height: 4px; background: rgba(255,255,255,0.15); outline: none; border-radius: 50px; }
+        .mixer-slider::-webkit-slider-thumb { -webkit-appearance: none; width: 14px; height: 14px; background: var(--primary); border-radius: 50%; cursor: pointer; box-shadow: 0 0 10px var(--primary-glow); }
+
+        /* --- MODALS --- */
+        .modal-overlay { position: fixed; inset: 0; z-index: 200; display: none; background: rgba(0,0,0,0.6); backdrop-filter: blur(15px); align-items: center; justify-content: center; padding: 20px; animation: fadeIn 0.3s ease; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        .modal-overlay.active { display: flex; }
+        .cast-box { width: 100%; max-width: 450px; background: var(--glass); border: 1px solid var(--glass-border); border-radius: 30px; padding: 40px; box-shadow: 0 40px 80px rgba(0,0,0,0.7); text-align: center; display: flex; flex-direction: column; align-items: center; }
+        
+        #somnia-dialog { z-index: 10000; }
+        #somnia-dialog .cast-box { padding: 35px; max-width: 400px; }
+        
+        .core-input { width: 100%; background: rgba(0,0,0,0.3); border: 1px solid var(--glass-border); color: var(--primary); padding: 15px; border-radius: 15px; outline: none; font-family: monospace; margin-bottom: 10px; transition: 0.3s; }
+        .core-input:focus { border-color: var(--accent); box-shadow: 0 0 15px var(--primary-glow); background: rgba(0,0,0,0.5); }
+        select.core-input { appearance: none; cursor: pointer; }
+
+        /* --- MEGA MODALS (Check-in, Calendar, Alchemist) --- */
+        .planner-bubble { width: 100%; max-width: 1400px; height: 85dvh; background: var(--glass); border: 1px solid var(--glass-border); border-radius: 40px; padding: 35px; box-shadow: 0 30px 80px rgba(0,0,0,0.8); display: flex; gap: 20px; overflow: hidden; backdrop-filter: blur(40px); }
+        .cal-panel { flex: 2; background: rgba(0,0,0,0.3); border: 1px solid var(--glass-border); border-radius: 25px; padding: 25px; display: flex; flex-direction: column; box-shadow: inset 0 0 50px rgba(0,0,0,0.5); overflow-y: auto;}
+        .side-panel { flex: 1.2; display: flex; flex-direction: column; gap: 20px; overflow-y: auto; padding-right: 5px;}
+
+        .cal-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; flex-shrink: 0; }
+        .cal-title { font-size: 1.5rem; color: var(--primary); text-transform: uppercase; letter-spacing: 3px; font-weight: bold; text-shadow: 0 0 10px var(--primary-glow); font-family: 'Times New Roman', serif;}
+
+        .panel-card { background: rgba(0,0,0,0.3); border: 1px solid var(--glass-border); border-radius: 25px; padding: 25px; box-shadow: inset 0 0 50px rgba(0,0,0,0.5); flex-shrink: 0;}
+        .panel-title { font-size: 1rem; color: var(--primary); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 15px; font-family: monospace; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 10px; }
+        .ai-input { width: 100%; background: rgba(0,0,0,0.6); border: 1px solid var(--glass-border); color: var(--text-main); padding: 15px; border-radius: 15px; outline: none; font-family: 'Georgia', serif; resize: vertical; min-height: 100px; margin-bottom: 10px; font-size: 0.95rem; line-height: 1.5; border-left: 2px solid var(--primary);}
+        .ai-input:focus { border-color: var(--accent); box-shadow: 0 0 15px var(--primary-glow); }
+
+        /* --- SANCTUM SPECIFIC UI --- */
+        .emoji-row { display: flex; justify-content: space-between; gap: 10px; margin-bottom: 15px; }
+        .emoji-btn { flex: 1; background: rgba(0,0,0,0.4); border: 1px solid var(--glass-border); border-radius: 20px; padding: 15px 5px; font-size: 2rem; cursor: pointer; transition: 0.2s; text-align: center; }
+        .emoji-btn:hover { background: rgba(255,255,255,0.1); transform: scale(1.05); }
+        .emoji-btn.active { background: var(--primary); border-color: var(--primary); box-shadow: 0 0 20px var(--primary-glow); transform: scale(1.1); }
+        
+        .symptom-tag { background: rgba(0,0,0,0.4); border: 1px solid var(--glass-border); color: var(--text-main); padding: 10px 18px; border-radius: 30px; font-family: monospace; font-size: 0.8rem; cursor: pointer; transition: 0.2s; white-space: nowrap; }
+        .symptom-tag.active { background: var(--accent); color: #000; font-weight: bold; border-color: var(--accent); box-shadow: 0 0 15px var(--primary-glow); }
+
+        .list-item { display: flex; justify-content: space-between; align-items: center; padding: 12px; background: rgba(0,0,0,0.4); border: 1px solid rgba(255,255,255,0.05); border-radius: 12px; margin-bottom: 8px; font-family: monospace; flex-shrink: 0;}
+
+        /* Calendar Grid */
+        .grid-month { display: grid; grid-template-columns: repeat(7, 1fr); gap: 8px; flex: 1; overflow-y: auto; padding-right:5px;}
+        .day-label { text-align: center; font-family: monospace; font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; padding-bottom: 10px;}
+        .cal-cell { min-height: 85px; border: 1px solid rgba(255,255,255,0.05); border-radius: 12px; padding: 8px; position: relative; font-family: monospace; font-size: 0.9rem; overflow-y: auto; display: flex; flex-direction: column; box-shadow: inset 0 0 15px rgba(0,0,0,0.5); transition: 0.2s;}
+        .cal-cell:hover { transform: translateY(-2px); box-shadow: inset 0 0 25px rgba(0,0,0,0.7); cursor: pointer; }
+        .cal-cell.selected-day { border-color: var(--primary) !important; box-shadow: inset 0 0 20px var(--primary-glow) !important; }
+
+        .color-dot { width: 12px; height: 12px; border-radius: 50%; display: inline-block; margin-right: 5px; }
+        .dot-green { background: #34d399; box-shadow: 0 0 8px #34d399; }
+        .dot-yellow { background: #fbbf24; box-shadow: 0 0 8px #fbbf24; }
+        .dot-red { background: #fb7185; box-shadow: 0 0 8px #fb7185; }
+        .dot-blue { background: #60a5fa; box-shadow: 0 0 8px #60a5fa; }
+        .dot-purple { background: #a855f7; box-shadow: 0 0 8px #a855f7; }
+
+        /* FAE CHAT WIDGET STYLES */
+        @keyframes fae-hover {
+            0% { transform: translateY(0px) rotate(-1deg); }
+            50% { transform: translateY(-12px) rotate(1deg); }
+            100% { transform: translateY(0px) rotate(-1deg); }
+        }
+        .fae-idle {
+            animation: fae-hover 5s ease-in-out infinite;
+            transform-origin: bottom center;
+            cursor: pointer;
+            filter: drop-shadow(0 0 12px var(--primary-glow));
+            transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1), filter 0.3s;
+        }
+        .fae-idle:hover {
+            filter: brightness(1.2) drop-shadow(0 0 20px var(--primary-glow));
+        }
+        .fae-talking {
+            animation: none !important;
+            transform: scale(1.15) translateY(-8px) !important;
+            filter: brightness(1.15) drop-shadow(0 0 25px var(--primary-glow)) !important;
+        }
+
+        @media (max-width: 1050px) {
+            .planner-bubble { flex-direction: column; height: 95dvh; overflow-y: auto;}
+            .side-panel { overflow-y: visible; }
+            #ui-wrapper { display: flex; flex-direction: column; align-items: center; padding-bottom: 20px; overflow-y: auto; }
+            #top-nav { position: static; display: flex; gap: 10px; padding: 20px; width: 100%; justify-content: center; flex-wrap: wrap; margin-top: 60px;}
+            .nav-logo { position: absolute; top: 20px; left: 50%; transform: translateX(-50%); margin: 0; }
+            .widget-dock { position: static; flex-direction: row; justify-content: center; width: 95%; max-width: 500px; flex-wrap: wrap;}
+            #maker-panel { position: static; width: 95%; max-width: 500px; height: auto; min-height: 500px; border-radius: 25px; margin-top: 20px; }
+        }
+        @media (min-width: 1800px) {
+            .planner-bubble { max-width: 1600px !important; height: 75dvh !important; padding: 50px !important; }
+            .ai-input { font-size: 1.3rem !important; line-height: 1.8 !important; }
+            .nav-logo { font-size: 2rem !important; top: 40px !important; left: 50px !important;}
+            #maker-panel { width: 550px !important; top: 120px !important;}
+            .widget-dock { top: 120px !important; right: 50px !important;}
+            .artifact-btn { font-size: 0.9rem !important; padding: 15px 30px !important; }
+        }
+    </style>
+</head>
+<body id="os-body" onclick="restoreUI()">
+
+    <div id="boot-screen">
+        <div class="kore-orb"></div>
+        <div class="boot-content">
+            <h1 class="boot-title">SOMNIASANCTUM</h1>
+            <p class="boot-disclaimer">A private, offline-first somatic vault. Your biological data, symptoms, and reflections are encrypted entirely within this isolated instance.</p>
+            <button class="artifact-btn" style="padding: 16px 45px; font-size: 1rem; border-color: var(--accent); border-radius: 50px;" onclick="startEngine()">ENTER THE SANCTUARY</button>
+        </div>
+    </div>
+
+    <div id="somnia-dialog" class="modal-overlay">
+        <div class="cast-box">
+            <h3 id="dialog-title" style="color: var(--primary); letter-spacing: 4px; margin-top: 0; text-transform: uppercase; font-family: 'Times New Roman', serif;">Notice</h3>
+            <p id="dialog-msg" style="font-size: 0.9rem; color: var(--text-muted); line-height: 1.6; margin-bottom: 25px; font-family: 'Georgia', serif; font-style: italic;"></p>
+            <input type="text" id="dialog-input" class="core-input" style="display:none; border-radius: 12px;">
+            <div style="display:flex; gap:15px; width:100%;">
+                <button id="dialog-cancel" class="toy-btn" style="flex:1;">Cancel</button>
+                <button id="dialog-confirm" class="toy-btn" style="flex:1; border-color:var(--accent); background: rgba(255,255,255,0.05); color: var(--text-main);">Confirm</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="drop-modal" class="modal-overlay" onclick="toggleModal('drop-modal')">
+        <div class="cast-box" onclick="event.stopPropagation()">
+            <h3 style="color: var(--primary); letter-spacing: 4px; margin-top: 0; font-family: 'Times New Roman', serif;">Drop Your Vibe</h3>
+            <p style="font-size: 0.9rem; color: var(--text-muted); font-style: italic;">Copy the link below to deploy this vault anywhere:</p>
+            <input type="text" class="core-input" readonly value="https://project-kore-llc.github.io/SomniaSanctum/" onclick="this.select()">
+            <button class="toy-btn" style="width: 100%; border-color:var(--accent);" onclick="toggleModal('drop-modal')">Close</button>
+        </div>
+    </div>
+
+    <div id="checkin-modal" class="modal-overlay" onclick="toggleModal('checkin-modal')">
+        <div class="planner-bubble" onclick="event.stopPropagation()">
+            <div class="cal-panel">
+                <div class="cal-header">
+                    <div class="cal-title" id="checkin-title-label">Today's Check-In</div>
+                    <div style="font-family:monospace; color:var(--text-muted);" id="checkin-date-display"></div>
+                </div>
+
+                <div style="display:flex; flex-direction:column; gap: 20px;">
+                    <div>
+                        <div style="font-size:0.8rem; color:var(--primary); font-family:monospace; text-transform:uppercase; margin-bottom:10px;">Overall Mood</div>
+                        <div class="emoji-row" id="mood-row">
+                            <button class="emoji-btn" onclick="setLogValue('mood', 1, this)">😭</button>
+                            <button class="emoji-btn" onclick="setLogValue('mood', 2, this)">😔</button>
+                            <button class="emoji-btn" onclick="setLogValue('mood', 3, this)">😐</button>
+                            <button class="emoji-btn" onclick="setLogValue('mood', 4, this)">🙂</button>
+                            <button class="emoji-btn" onclick="setLogValue('mood', 5, this)">😄</button>
+                        </div>
+                    </div>
+
+                    <div>
+                        <div style="font-size:0.8rem; color:var(--primary); font-family:monospace; text-transform:uppercase; margin-bottom:10px;">Energy Level</div>
+                        <div class="emoji-row" id="energy-row">
+                            <button class="emoji-btn" onclick="setLogValue('energy', 1, this)">🪫</button>
+                            <button class="emoji-btn" onclick="setLogValue('energy', 2, this)">🔋</button>
+                            <button class="emoji-btn" onclick="setLogValue('energy', 3, this)">⚡</button>
+                            <button class="emoji-btn" onclick="setLogValue('energy', 4, this)">✨</button>
+                            <button class="emoji-btn" onclick="setLogValue('energy', 5, this)">🔥</button>
+                        </div>
+                    </div>
+
+                    <div>
+                        <div style="font-size:0.8rem; color:var(--primary); font-family:monospace; text-transform:uppercase; margin-bottom:10px;">Sleep Quality</div>
+                        <div class="emoji-row" id="sleep-row">
+                            <button class="emoji-btn" onclick="setLogValue('sleep', 1, this)">🥱</button>
+                            <button class="emoji-btn" onclick="setLogValue('sleep', 2, this)">🛌</button>
+                            <button class="emoji-btn" onclick="setLogValue('sleep', 3, this)">😴</button>
+                            <button class="emoji-btn" onclick="setLogValue('sleep', 4, this)">💤</button>
+                            <button class="emoji-btn" onclick="setLogValue('sleep', 5, this)">🌌</button>
+                        </div>
+                    </div>
+
+                    <div>
+                        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
+                            <div style="font-size:0.8rem; color:var(--primary); font-family:monospace; text-transform:uppercase;">Symptoms Present</div>
+                            <button class="toy-btn" style="padding: 4px 8px; font-size:0.6rem;" onclick="addCustomSymptom()">+ Custom</button>
+                        </div>
+                        <div id="symptoms-grid" style="display:flex; flex-wrap:wrap; gap:10px;"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="side-panel">
+                <div class="panel-card">
+                    <div class="panel-title">Pain Log</div>
+                    <div style="display:flex; gap:10px; margin-bottom:10px;">
+                        <input type="text" id="pain-loc" class="core-input" placeholder="Location (e.g. Lower Back)" style="margin:0; flex:2;">
+                        <input type="number" id="pain-int" class="core-input" placeholder="1-10" min="1" max="10" style="margin:0; flex:1;">
+                        <button class="artifact-btn" style="border-color:var(--accent);" onclick="addPain()">Add</button>
+                    </div>
+                    <div id="pain-list" style="display:flex; flex-direction:column; gap:5px;"></div>
+                </div>
+
+                <div class="panel-card">
+                    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:15px; border-bottom:1px solid rgba(255,255,255,0.1); padding-bottom:10px;">
+                        <div class="panel-title" style="margin:0; border:none; padding:0;">Meds Taken</div>
+                        <button class="toy-btn" style="padding: 4px 8px; font-size:0.6rem;" onclick="addMedToLibrary()">+ Add to Lib</button>
+                    </div>
+                    <div id="meds-list" style="display:flex; flex-direction:column; gap:8px;"></div>
+                </div>
+
+                <div class="panel-card" style="flex:1; display:flex; flex-direction:column;">
+                    <div class="panel-title">Reflection / Notes</div>
+                    <textarea id="daily-note" class="ai-input" style="flex:1;" placeholder="Drop a thought..."></textarea>
+                    <button class="artifact-btn" style="width:100%; border-color:var(--primary); background:var(--primary); color:#000; font-weight:bold; margin-top:10px;" onclick="saveDailyLog()">Seal Record</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="calendar-modal" class="modal-overlay" onclick="toggleModal('calendar-modal')">
+        <div class="planner-bubble" onclick="event.stopPropagation()">
+            <div class="cal-panel">
+                <div class="cal-header">
+                    <div class="cal-title">Somatic Calendar</div>
+                    <div style="display:flex; gap:10px;">
+                        <span style="font-size:0.7rem; font-family:monospace; color:var(--text-muted);"><div class="color-dot dot-green"></div> Good</span>
+                        <span style="font-size:0.7rem; font-family:monospace; color:var(--text-muted);"><div class="color-dot dot-yellow"></div> Meh</span>
+                        <span style="font-size:0.7rem; font-family:monospace; color:var(--text-muted);"><div class="color-dot dot-red"></div> Rough</span>
+                    </div>
+                </div>
+                <div id="sanctum-grid" class="grid-month"></div>
+            </div>
+            
+            <div class="side-panel">
+                <div class="panel-card" id="cal-day-details" style="display:none; border-color: var(--primary);">
+                    <div class="panel-title" id="cal-day-title" style="color: var(--primary);">Day Details</div>
+                    <div id="cal-day-content" style="font-family:monospace; font-size:0.85rem; line-height:1.6; color:var(--text-muted);"></div>
+                </div>
+
+                <div class="panel-card" style="flex:1;">
+                    <div class="panel-title" style="color:var(--accent);">Patterns & Insights</div>
+                    <div id="insights-content" style="font-family:'Georgia',serif; font-size:0.9rem; line-height:1.8; color:var(--text-main); font-style:italic;">
+                        Log more days to uncover patterns.
+                    </div>
+                    <button class="artifact-btn" style="width:100%; margin-top:20px;" onclick="generateInsights()">Refresh Analysis</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="alchemist-modal" class="modal-overlay" onclick="toggleModal('alchemist-modal')">
+        <div class="planner-bubble" onclick="event.stopPropagation()" style="max-width:800px; flex-direction:column;">
+            <div class="cal-header">
+                <div class="cal-title">The Alchemist (AI Assistant)</div>
+                <div style="display: flex; gap: 5px;">
+                    <input type="password" id="gemini-key-input" class="core-input" style="margin:0; padding: 4px 8px; width: 120px; font-size: 0.7rem;" placeholder="API Key...">
+                    <button class="toy-btn" id="save-key-btn" style="padding: 4px 8px; font-size: 0.6rem;" onclick="saveApiKey()">Save</button>
+                </div>
+            </div>
+            <div class="panel-card" style="flex:1; display:flex; flex-direction:column;">
+                <p style="font-size:0.85rem; color:var(--text-muted);">Command the Alchemist to interpret your somatic data, summarize your week, or suggest gentle routines based on your recent logs.</p>
+                <textarea class="ai-input" id="ai-prompt" placeholder="Give instructions to The Alchemist..." style="flex:1;"></textarea>
+                <button class="artifact-btn" style="width: 100%; border-color: var(--accent); padding: 15px;" onclick="processAlchemist()">Consult Alchemist</button>
+                <div id="ai-status" style="font-size: 0.85rem; color: var(--text-muted); font-family: 'Georgia', serif; font-style:italic; margin-top: 15px; text-align: center; white-wrap:pre-wrap; text-align:left; overflow-y:auto;">Awaiting query...</div>
+            </div>
+        </div>
+    </div>
+
+    <div id="bg-anchor"></div>
+    <div id="glow-layer" class="glow-pulse"></div>
+    <canvas id="particleCanvas"></canvas>
+
+    <div id="ui-wrapper">
+        <div class="nav-logo">SOMNIASANCTUM</div>
+        
+        <div id="top-nav" onclick="event.stopPropagation()">
+            <button class="artifact-btn" style="border-color: var(--accent); color: var(--text-main); font-weight: bold; background: rgba(255,255,255,0.05);" onclick="globalSnapshot()">📸 Snapshot</button>
+            <button class="artifact-btn" onclick="openCheckIn()">Check-In</button>
+            <button class="artifact-btn" onclick="toggleCloak()">Cloak UI</button>
+            <button class="artifact-btn" onclick="toggleModal('calendar-modal'); renderCalendar();">Calendar</button>
+            <button class="artifact-btn" onclick="toggleModal('alchemist-modal')">The Alchemist</button>
+            <button class="artifact-btn btn-drop" onclick="toggleModal('drop-modal')">Drop</button>
+        </div>
+
+        <div class="widget-dock" onclick="event.stopPropagation()">
+            <div class="gorgeous-widget" style="padding:20px;">
+                <div class="time-display" id="clock-widget" style="font-size:3.5rem;">00:00</div>
+                <div class="date-display" id="date-widget" style="font-size:0.8rem;">Loading...</div>
+            </div>
+        </div>
+
+        <!-- Fae Floating Chat Interface -->
+        <div id="fae-chat-wrapper" style="position: fixed; bottom: 20px; right: 35px; z-index: 999; display: flex; align-items: flex-end; gap: 20px; pointer-events: none;" onclick="event.stopPropagation()">
+            <!-- Clean glassmorphic bubble (bypasses default pseudo-element outlines) -->
+            <div id="fae-bubble" style="display: none; width: 320px; text-align: left; padding: 22px; border: 1px solid var(--glass-border); border-radius: 24px 24px 0 24px; background: rgba(10, 15, 25, 0.75); backdrop-filter: blur(25px); box-shadow: 0 15px 35px rgba(0,0,0,0.6); pointer-events: auto; margin-bottom: 20px; position: relative;">
+                <div style="font-weight: bold; color: var(--primary); margin-bottom: 8px; font-family: monospace; font-size: 0.75rem; display: flex; justify-content: space-between; align-items: center; letter-spacing: 1px;">
+                    <span>SANCTUM FAE</span>
+                    <button onclick="closeFaeChat(event)" style="background:none; border:none; color:var(--text-muted); cursor:pointer; font-size: 0.85rem; padding: 0;">✕</button>
+                </div>
+                <div id="fae-text" style="font-size: 0.8rem; line-height: 1.5; color: var(--text-main); font-family: 'Georgia', serif; max-height: 150px; overflow-y: auto; margin-bottom: 12px; font-style: italic;">
+                    *Glimmers softly with a warm somatic light* <br>I can sense your biological currents. Share your physical reflections, symptoms, or ask me to interpret your energy today.
+                </div>
+                <div style="display: flex; gap: 8px;">
+                    <input type="text" id="fae-input" class="core-input" style="margin: 0; padding: 8px 12px; font-size: 0.75rem; border-radius: 12px; flex: 1; text-align: left;" placeholder="Type here...">
+                    <button class="toy-btn" style="padding: 8px 15px; border-radius: 12px; font-size: 0.65rem;" onclick="sendFaeMessage()">Ask</button>
+                </div>
+            </div>
+            <div style="pointer-events: auto;">
+                <img id="fae-avatar" class="fae-idle" src="fae1.png" alt="Sanctum Fae" style="width: 140px; height: auto; display: block;" onclick="toggleFaeChat()">
+            </div>
+        </div>
+
+        <main id="maker-panel" onclick="event.stopPropagation()">
+            <div class="tab-bar">
+                <button class="tab-btn active" onclick="switchTab('tab-audio', this)">Audio</button>
+                <button class="tab-btn" onclick="switchTab('tab-canvas', this)">Canvas</button>
+                <button class="tab-btn" onclick="switchTab('tab-atmos', this)">Atmos</button>
+                <button class="tab-btn" onclick="switchTab('tab-vault', this)">Vault</button>
+                <button class="tab-btn" onclick="switchTab('tab-protips', this)">Pro Tips</button>
+            </div>
+
+            <div id="tab-audio" class="tab-content active">
+                <div style="display: flex; gap: 10px;">
+                    <label class="toy-btn" style="flex:1; text-align:center; border-color: var(--accent);">✨ Upload Audio<input type="file" style="display:none;" accept="audio/*" onchange="handleAudioUpload(this)"></label>
+                    <button class="toy-btn" onclick="stopAllAudio()" style="border-color:#fb7185; color:#fb7185; background:rgba(251,113,133,0.05);">Shh!</button>
+                </div>
+                <div class="ctrl-row" style="margin-top: 10px;"><label style="color:var(--primary);">Master Gain</label><input type="range" class="ctrl-slider" id="master-gain-slider" min="0" max="2" step="0.1" value="1" oninput="setMasterGain(this.value)"></div>
+                <div id="mixer-container" style="display:flex; flex-direction:column; gap:10px; margin-top: 10px;"></div>
+            </div>
+
+            <div id="tab-canvas" class="tab-content">
+                <label class="upload-zone" style="margin-bottom: 15px;">🖼️ Upload Local Canvas<input type="file" accept="image/*" onchange="executeImageUpload(this)"></label>
+                <div class="ctrl-row" style="margin-bottom: 15px;"><label>Bg Zoom</label><input type="range" class="ctrl-slider" id="zoom-slider" min="0.5" max="3" step="0.1" value="1" oninput="updateVar('--bg-zoom', this.value); saveCurrentState();"></div>
+                <div id="custom-bgs" style="display:flex; flex-direction:column; gap: 10px;"></div>
+            </div>
+
+            <div id="tab-atmos" class="tab-content">
+                <h4 class="section-title">Color Palettes</h4><div class="btn-grid" id="color-grid"></div>
+                <h4 class="section-title" style="margin-top:15px;">Sprinkle Form</h4><div class="btn-grid" id="particle-grid"></div>
+                <h4 class="section-title" style="margin-top:15px;">Sprinkle Color</h4><div id="particle-color-grid" style="display:flex; flex-wrap:wrap; gap:8px;"></div>
+                <h4 class="section-title" style="margin-top:15px;">Glow Forms</h4><div class="btn-grid" id="glow-grid"></div>
+                <h4 class="section-title" style="margin-top:15px;">Glow Color</h4><div id="glow-color-grid" style="display:flex; flex-wrap:wrap; gap:8px;"></div>
+                <h4 class="section-title" style="margin-top:15px;">Tweaks</h4>
+                <div class="ctrl-row"><label>Speed</label><input type="range" class="ctrl-slider" id="speed-slider" min="1" max="20" value="10" oninput="updateVar('--anim-speed', (21-this.value)+'s'); saveCurrentState();"></div>
+                <div class="ctrl-row"><label>Opacity</label><input type="range" class="ctrl-slider" id="opac-slider" min="0" max="1" step="0.1" value="0.3" oninput="updateVar('--glow-opac', this.value); saveCurrentState();"></div>
+                <div class="ctrl-row"><label>Brightness</label><input type="range" class="ctrl-slider" id="bright-slider" min="0.2" max="2" step="0.1" value="0.85" oninput="updateVar('--bg-bright', this.value); saveCurrentState();"></div>
+            </div>
+
+            <div id="tab-vault" class="tab-content">
+                <button class="toy-btn" id="save-btn" style="border-color: var(--primary); padding: 18px; border-radius: 50px;" onclick="savePreset()">💖 Vault This Vibe</button>
+                <div style="display:flex; gap:10px; margin-top: 10px;">
+                    <button class="toy-btn" style="flex:1;" onclick="exportVibes()">📥 Export Vibes (UI)</button>
+                    <label class="toy-btn" style="flex:1; text-align:center; cursor: pointer;">📤 Import Vibes<input type="file" style="display:none;" accept=".json" onchange="importVibes(this)"></label>
+                </div>
+                <div id="vault-list" style="display:flex; flex-direction:column; gap:12px; margin-top:15px;"></div>
+            </div>
+
+            <div id="tab-protips" class="tab-content">
+                <h4 class="section-title" style="color: var(--primary);">🛠️ SANCTUM MANUAL</h4>
+                <p style="font-size: 0.8rem; color: var(--text-muted); line-height: 1.6; margin-top: 5px;">
+                    SomniaSanctum is your offline, local-first somatic vault. It tracks the body without judgment, utilizing tap-based inputs to reduce cognitive load.
+                </p>
+                <ul style="font-size: 0.8rem; color: var(--text-muted); line-height: 1.6; padding-left: 20px; margin-top:0;">
+                    <li><strong>Global Snapshot Tool:</strong> Located in the top navigation bar. Clicking 📸 Snapshot will evaluate your current somatic logs, prompt the Alchemist to generate and log insights based on your recent patterns, and trigger a raw JSON download of your biological data to your hard drive.</li>
+                    <li><strong>Strict Separation of Data:</strong> The <em>Vault Tab</em> purely imports/exports aesthetic Vibes (Colors, Particles, Audio layouts). You must use the 📸 Snapshot tool to export your actual somatic logs.</li>
+                    <li><strong>Daily Check-in:</strong> Designed for ND-friendly friction. Only tap what you want. Data merges automatically under the current local date.</li>
+                    <li><strong>Calendar Colors:</strong> <div class="color-dot dot-green"></div> Good (Mood 4-5) | <div class="color-dot dot-yellow"></div> Meh (Mood 3) | <div class="color-dot dot-red"></div> Rough (Mood 1-2).</li>
+                </ul>
+                <h4 class="section-title" style="margin-top: 15px; color: var(--primary);">🤖 THE ALCHEMIST (AI)</h4>
+                <p style="font-size: 0.8rem; color: var(--text-muted); line-height: 1.6; margin-top: 5px;">
+                    Enter your Gemini API key in The Alchemist tab. Your key stays localized. Ask the Alchemist to cross-reference your symptoms or provide a weekly summary based on the raw data in your Sanctum.
+                </p>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        // --- 0. UTILS & DIALOGS ---
+        // Helper to get local date string properly avoiding UTC offset bugs
+        function getLocalDateString() {
+            const now = new Date();
+            const offset = now.getTimezoneOffset() * 60000;
+            return new Date(now.getTime() - offset).toISOString().split('T')[0];
+        }
+
+        function somniaAlert(title, msg) {
+            return new Promise(resolve => {
+                const modal = document.getElementById('somnia-dialog');
+                document.getElementById('dialog-title').innerText = title; document.getElementById('dialog-msg').innerText = msg;
+                document.getElementById('dialog-input').style.display = 'none'; document.getElementById('dialog-cancel').style.display = 'none';
+                const btn = document.getElementById('dialog-confirm'); btn.innerText = "OKAY";
+                btn.onclick = () => { modal.classList.remove('active'); resolve(true); }; modal.classList.add('active');
+            });
+        }
+        function somniaPrompt(title, msg, defaultVal = "") {
+            return new Promise(resolve => {
+                const modal = document.getElementById('somnia-dialog');
+                document.getElementById('dialog-title').innerText = title; document.getElementById('dialog-msg').innerText = msg;
+                const input = document.getElementById('dialog-input'); input.style.display = 'block'; input.value = defaultVal;
+                document.getElementById('dialog-cancel').style.display = 'block'; document.getElementById('dialog-cancel').onclick = () => { modal.classList.remove('active'); resolve(null); };
+                const btn = document.getElementById('dialog-confirm'); btn.innerText = "SAVE";
+                btn.onclick = () => { modal.classList.remove('active'); resolve(input.value); }; modal.classList.add('active'); input.focus();
+            });
+        }
+        function toggleCloak() { document.body.classList.toggle('cloaked'); }
+        function restoreUI() { document.body.classList.remove('cloaked'); }
+        function toggleModal(id) { document.getElementById(id).classList.toggle('active'); }
+        function updateVar(name, val) { document.documentElement.style.setProperty(name, val); }
+        function toggleFullscreen() { if (!document.fullscreenElement) document.documentElement.requestFullscreen(); else document.exitFullscreen(); }
+        function switchTab(id, btn) { document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active')); btn.classList.add('active'); document.querySelectorAll('.tab-content').forEach(c=>c.classList.remove('active')); document.getElementById(id).classList.add('active'); }
+
+        // --- 1. CORE DATABASES (SANCTUM SPECIFIC) ---
+        const dbPromiseCore = new Promise((res, rej) => {
+            const req = indexedDB.open('SomniaSanctumDB_Core', 2);
+            req.onupgradeneeded = e => {
+                const db = e.target.result;
+                if(!db.objectStoreNames.contains('logs')) db.createObjectStore('logs', {keyPath:'date'});
+                if(!db.objectStoreNames.contains('symptoms')) db.createObjectStore('symptoms', {keyPath:'id'});
+                if(!db.objectStoreNames.contains('meds')) db.createObjectStore('meds', {keyPath:'id'});
+                if(!db.objectStoreNames.contains('bills')) db.createObjectStore('bills', {keyPath:'id'});
+                if(!db.objectStoreNames.contains('breadcrumbs')) db.createObjectStore('breadcrumbs', {keyPath:'id'});
+            };
+            req.onsuccess = async e => {
+                const db = e.target.result;
+                const tx = db.transaction('symptoms', 'readonly');
+                const store = tx.objectStore('symptoms');
+                const countReq = store.count();
+                countReq.onsuccess = () => {
+                    if (countReq.result === 0) {
+                        const seedTx = db.transaction('symptoms', 'readwrite');
+                        const seedStore = seedTx.objectStore('symptoms');
+                        const defaults = ["Headache", "Nausea", "Fatigue", "Anxiety", "Sensory Overload", "Brain Fog", "Cramps", "Joint Pain"];
+                        defaults.forEach(s => seedStore.put({id: 'sym_'+Date.now()+Math.random(), name: s}));
+                    }
+                };
+                res(db);
+            }; 
+            req.onerror = e => rej(e);
+        });
+        const dbPromiseMedia = new Promise((res, rej) => {
+            const req = indexedDB.open('SomniaSanctumDB_Media', 1);
+            req.onupgradeneeded = e => { if(!e.target.result.objectStoreNames.contains('media')) e.target.result.createObjectStore('media'); };
+            req.onsuccess = e => res(e.target.result); req.onerror = e => rej(e);
+        });
+
+        async function saveMedia(key, blob) { const db = await dbPromiseMedia; db.transaction('media','readwrite').objectStore('media').put(blob, key); }
+        async function getMedia(key) { return new Promise(async res => { const db = await dbPromiseMedia; const req = db.transaction('media').objectStore('media').get(key); req.onsuccess = ()=>res(req.result); req.onerror = ()=>res(null); }); }
+        async function getAllMediaKeys() { return new Promise(async res => { const db = await dbPromiseMedia; const req = db.transaction('media').objectStore('media').getAllKeys(); req.onsuccess = ()=>res(req.result); }); }
+        async function deleteMedia(key) { const db = await dbPromiseMedia; db.transaction('media','readwrite').objectStore('media').delete(key); localStorage.removeItem('somnia_name_'+key); }
+        async function dbPut(store, data) { const db = await dbPromiseCore; db.transaction(store,'readwrite').objectStore(store).put(data); }
+        async function dbGetAll(store) { return new Promise(async res => { const db = await dbPromiseCore; const req = db.transaction(store).objectStore(store).getAll(); req.onsuccess = ()=>res(req.result); }); }
+        async function dbGet(store, key) { return new Promise(async res => { const db = await dbPromiseCore; const req = db.transaction(store).objectStore(store).get(key); req.onsuccess = ()=>res(req.result); }); }
+        async function dbDelete(store, key) { const db = await dbPromiseCore; db.transaction(store,'readwrite').objectStore(store).delete(key); }
+
+        async function startEngine() {
+            document.getElementById('boot-screen').style.opacity = '0';
+            await restoreActiveState();
+            setTimeout(() => document.getElementById('boot-screen').remove(), 1500);
+        }
+
+        // --- 2. SANCTUM LOGIC (Daily Check-in) ---
+        let currentLog = {
+            date: getLocalDateString(),
+            energy: 0, mood: 0, sleep: 0, pain: [], symptoms: [], meds: [], note: ""
+        };
+
+        async function openCheckIn() {
+            const today = getLocalDateString();
+            document.getElementById('checkin-date-display').innerText = new Date().toLocaleDateString();
+            
+            const existing = await dbGet('logs', today);
+            if (existing) currentLog = existing;
+            else currentLog = { date: today, energy: 0, mood: 0, sleep: 0, pain: [], symptoms: [], meds: [], note: "" };
+
+            updateEmojiRow('mood', currentLog.mood);
+            updateEmojiRow('energy', currentLog.energy);
+            updateEmojiRow('sleep', currentLog.sleep);
+            document.getElementById('daily-note').value = currentLog.note;
+            
+            await renderSymptomsGrid();
+            renderPainList();
+            await renderMedsList();
+
+            toggleModal('checkin-modal');
+        }
+
+        function setLogValue(type, val, btn) {
+            currentLog[type] = val;
+            updateEmojiRow(type, val);
+            playRitualSound();
+        }
+
+        function updateEmojiRow(type, val) {
+            const row = document.getElementById(`${type}-row`);
+            if(!row) return;
+            const btns = row.querySelectorAll('.emoji-btn');
+            btns.forEach((b, index) => {
+                if (index + 1 === val) b.classList.add('active');
+                else b.classList.remove('active');
+            });
+        }
+
+        async function renderSymptomsGrid() {
+            const grid = document.getElementById('symptoms-grid');
+            grid.innerHTML = '';
+            const allSymptoms = await dbGetAll('symptoms');
+            allSymptoms.forEach(sym => {
+                const isActive = currentLog.symptoms.includes(sym.name);
+                const btn = document.createElement('button');
+                btn.className = `symptom-tag ${isActive ? 'active' : ''}`;
+                btn.innerText = sym.name;
+                btn.onclick = () => {
+                    if (currentLog.symptoms.includes(sym.name)) {
+                        currentLog.symptoms = currentLog.symptoms.filter(s => s !== sym.name);
+                        btn.classList.remove('active');
+                    } else {
+                        currentLog.symptoms.push(sym.name);
+                        btn.classList.add('active');
+                    }
+                    playRitualSound();
+                };
+                grid.appendChild(btn);
+            });
+        }
+
+        async function addCustomSymptom() {
+            const name = await somniaPrompt("New Symptom", "Enter name:");
+            if (!name) return;
+            await dbPut('symptoms', {id: 'sym_'+Date.now(), name});
+            await renderSymptomsGrid();
+        }
+
+        function addPain() {
+            const loc = document.getElementById('pain-loc').value;
+            const int = parseInt(document.getElementById('pain-int').value);
+            if (!loc || isNaN(int)) return;
+            currentLog.pain.push({location: loc, intensity: int});
+            document.getElementById('pain-loc').value = '';
+            document.getElementById('pain-int').value = '';
+            renderPainList();
+            playRitualSound();
+        }
+
+        function renderPainList() {
+            const list = document.getElementById('pain-list');
+            list.innerHTML = '';
+            currentLog.pain.forEach((p, idx) => {
+                list.innerHTML += `<div class="list-item">
+                    <span style="color:var(--text-main);">${p.location} <span style="color:var(--accent);">[${p.intensity}/10]</span></span>
+                    <button class="artifact-btn" style="padding:4px 8px; font-size:0.6rem; border-color:#fb7185; color:#fb7185;" onclick="removePain(${idx})">✕</button>
+                </div>`;
+            });
+        }
+
+        function removePain(idx) { currentLog.pain.splice(idx, 1); renderPainList(); }
+
+        async function addMedToLibrary() {
+            const name = await somniaPrompt("Add Med", "Enter Medication Name (e.g. Ibuprofen 200mg):");
+            if (!name) return;
+            await dbPut('meds', {id: 'med_'+Date.now(), name});
+            await renderMedsList();
+        }
+
+        async function renderMedsList() {
+            const list = document.getElementById('meds-list');
+            list.innerHTML = '';
+            const allMeds = await dbGetAll('meds');
+            allMeds.forEach(med => {
+                const isActive = currentLog.meds.some(m => m.name === med.name);
+                list.innerHTML += `<div class="list-item" style="cursor:pointer; ${isActive ? 'border-color:var(--primary);' : ''}" onclick="toggleMed('${med.name}')">
+                    <span style="${isActive ? 'color:var(--primary); font-weight:bold;' : 'color:var(--text-main);'}">${med.name}</span>
+                    <span style="font-size:0.7rem; color:var(--text-muted);">${isActive ? 'Taken' : 'Untaken'}</span>
+                </div>`;
+            });
+        }
+
+        function toggleMed(name) {
+            const exists = currentLog.meds.some(m => m.name === name);
+            if (exists) currentLog.meds = currentLog.meds.filter(m => m.name !== name);
+            else currentLog.meds.push({name: name, time: new Date().toLocaleTimeString()});
+            renderMedsList();
+            playRitualSound();
+        }
+
+        async function saveDailyLog() {
+            currentLog.note = document.getElementById('daily-note').value;
+            await dbPut('logs', currentLog);
+            toggleModal('checkin-modal');
+            somniaAlert("Record Sealed", "Your somatic data has been logged to the Sanctum.");
+            if(document.getElementById('calendar-modal').classList.contains('active')) {
+                renderCalendar();
+            }
+        }
+
+        function playRitualSound() {
+            // Optional micro-ritual hook.
+        }
+
+        // --- 3. CALENDAR & INSIGHTS ---
+        async function renderCalendar() {
+            const grid = document.getElementById('sanctum-grid');
+            grid.innerHTML = '';
+            const now = new Date(); const y = now.getFullYear(); const m = now.getMonth();
+            const firstDay = new Date(y, m, 1).getDay(); const daysInMonth = new Date(y, m + 1, 0).getDate();
+            
+            const allLogs = await dbGetAll('logs'); 
+
+            ['S','M','T','W','T','F','S'].forEach(d => { grid.innerHTML += `<div class="day-label">${d}</div>`; });
+            for(let i=0; i<firstDay; i++) grid.innerHTML += `<div></div>`;
+
+            for(let i=1; i<=daysInMonth; i++) {
+                const dateStr = `${y}-${String(m+1).padStart(2,'0')}-${String(i).padStart(2,'0')}`;
+                const dayLog = allLogs.find(l => l.date === dateStr);
+                const isToday = i === now.getDate();
+                
+                let bg = 'rgba(0,0,0,0.4)';
+                let border = 'rgba(255,255,255,0.05)';
+                let dotHtml = '';
+
+                if (dayLog) {
+                    if (dayLog.mood >= 4) border = '#34d399'; // Green
+                    else if (dayLog.mood === 3) border = '#fbbf24'; // Yellow
+                    else if (dayLog.mood > 0) border = '#fb7185'; // Red
+
+                    if(dayLog.symptoms.length > 0) dotHtml += `<div class="color-dot" style="background:var(--accent); width:6px; height:6px;"></div>`;
+                    if(dayLog.pain.length > 0) dotHtml += `<div class="color-dot" style="background:#fb7185; width:6px; height:6px;"></div>`;
+                }
+                
+                grid.innerHTML += `<div class="cal-cell" id="cal-cell-${dateStr}" style="background:${bg}; border-color:${border};" onclick="viewCalDay('${dateStr}')">
+                    <span style="${isToday?'color:var(--primary); font-weight:bold;':''}">${i}</span>
+                    <div style="margin-top:5px;">${dotHtml}</div>
+                </div>`;
+            }
+            generateInsights();
+        }
+
+        async function viewCalDay(dateStr) {
+            document.querySelectorAll('#sanctum-grid .cal-cell').forEach(c => c.classList.remove('selected-day'));
+            const cell = document.getElementById('cal-cell-'+dateStr);
+            if(cell) cell.classList.add('selected-day');
+
+            const dayLog = await dbGet('logs', dateStr);
+            const container = document.getElementById('cal-day-details');
+            const title = document.getElementById('cal-day-title');
+            const content = document.getElementById('cal-day-content');
+            
+            container.style.display = 'block';
+            title.innerText = dateStr;
+
+            if(!dayLog) {
+                content.innerText = "No log found for this date.";
+                return;
+            }
+
+            let html = `Energy: ${dayLog.energy}/5 | Mood: ${dayLog.mood}/5 | Sleep: ${dayLog.sleep}/5<br><br>`;
+            if (dayLog.symptoms.length > 0) html += `<strong>Symptoms:</strong> ${dayLog.symptoms.join(', ')}<br><br>`;
+            if (dayLog.pain.length > 0) html += `<strong>Pain:</strong> ${dayLog.pain.map(p => `${p.location} (${p.intensity})`).join(', ')}<br><br>`;
+            if (dayLog.meds.length > 0) html += `<strong>Meds:</strong> ${dayLog.meds.map(m => m.name).join(', ')}<br><br>`;
+            if (dayLog.note) html += `<strong>Notes:</strong><br><span style="color:var(--text-main); font-style:italic;">"${dayLog.note}"</span>`;
+
+            content.innerHTML = html;
+        }
+
+        async function generateInsights() {
+            try {
+                const allLogs = await dbGetAll('logs');
+                const content = document.getElementById('insights-content');
+                if (!allLogs || allLogs.length < 2) {
+                    content.innerHTML = "Not enough data yet. Log a few more days to uncover somatic patterns.";
+                    return;
+                }
+
+                let lowEnergyDays = 0; let highPainDays = 0;
+                let sympCounts = {};
+
+                allLogs.forEach(l => {
+                    if (l.energy <= 2 && l.energy > 0) lowEnergyDays++;
+                    if (l.pain && l.pain.length > 0) highPainDays++;
+                    if (l.symptoms) l.symptoms.forEach(s => sympCounts[s] = (sympCounts[s] || 0) + 1);
+                });
+
+                const topSymp = Object.keys(sympCounts).sort((a,b) => sympCounts[b] - sympCounts[a])[0];
+
+                let html = `Based on ${allLogs.length} logged days:<br><br>`;
+                html += `• You experience low energy on ${Math.round((lowEnergyDays/allLogs.length)*100)}% of tracked days.<br>`;
+                if(topSymp) html += `• <strong>${topSymp}</strong> is your most frequently recurring symptom.<br>`;
+                html += `• Pain was registered on ${highPainDays} days.<br><br>`;
+                html += `(For deeper systemic analysis, consult The Alchemist.)`;
+                
+                content.innerHTML = html;
+            } catch (err) {
+                console.error("Insights generation failed:", err);
+            }
+        }
+
+        // --- 4. THE ALCHEMIST (AI) ---
+        function saveApiKey() { const k = document.getElementById('gemini-key-input').value.trim(); if(k) { localStorage.setItem('gemini_api_key', k); const b = document.getElementById('save-key-btn'); b.innerText="Saved!"; setTimeout(()=>b.innerText="Save",2000); } }
+        
+        async function processAlchemist() {
+            const p = document.getElementById('ai-prompt').value.trim(); const s = document.getElementById('ai-status'); const k = localStorage.getItem('gemini_api_key');
+            if(!k) return s.innerText = "Error: Missing API Key."; if(!p) return s.innerText = "Provide instructions.";
+            s.style.color = 'var(--accent)'; s.innerText = "The Alchemist is consulting your records...";
+            
+            try {
+                const allLogs = await dbGetAll('logs');
+                const recentLogs = allLogs.sort((a,b) => new Date(b.date) - new Date(a.date)).slice(0,14);
+                
+                const sysPrompt = `You are The Alchemist, an empathetic, analytical, ND-friendly AI assistant inside SomniaSanctum. Analyze the user's somatic data (last 14 days) to answer their query. Identify systemic patterns, triggers, or correlations without using complex medical jargon. Data: ${JSON.stringify(recentLogs)}`;
+
+                const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${k}`, { method: 'POST', headers: {'Content-Type':'application/json'}, body: JSON.stringify({contents:[{parts:[{text: sysPrompt + "\nUser Query: " + p}]}]})});
+                const data = await res.json(); if(data.error) throw new Error(data.error.message);
+                
+                const reply = data.candidates[0].content.parts[0].text;
+                s.style.color = 'var(--text-main)';
+                s.innerText = reply;
+                document.getElementById('ai-prompt').value=' '; 
+            } catch(e) { console.log(e); s.style.color='#fb7185'; s.innerText="Alchemical Disturbance (API Error)."; }
+        }
+
+        // --- 5. DATA EXPORT/IMPORT (Snapshot) ---
+        async function globalSnapshot() {
+            try {
+                const logs = await dbGetAll('logs') || []; 
+                const symptoms = await dbGetAll('symptoms') || []; 
+                const meds = await dbGetAll('meds') || [];
+                const bills = await dbGetAll('bills') || [];
+                const crumbs = await dbGetAll('breadcrumbs') || [];
+                
+                const now = new Date();
+                const timeStr = now.toLocaleTimeString([], {hour:'2-digit',minute:'2-digit',second:'2-digit'});
+                
+                let lowEnergyDays = 0; let highPainDays = 0; let sympCounts = {};
+                logs.forEach(l => {
+                    if (l.energy <= 2 && l.energy > 0) lowEnergyDays++;
+                    if (l.pain && l.pain.length > 0) highPainDays++;
+                    if (l.symptoms) l.symptoms.forEach(s => sympCounts[s] = (sympCounts[s] || 0) + 1);
+                });
+                const topSymp = Object.keys(sympCounts).sort((a,b) => sympCounts[b] - sympCounts[a])[0];
+                
+                let insightStr = `Captured ${logs.length} total days.`;
+                if (logs.length > 0) {
+                    insightStr += ` Low energy ${Math.round((lowEnergyDays/logs.length)*100)}% of the time.`;
+                    if (topSymp) insightStr += ` Top symptom: ${topSymp}.`;
+                    insightStr += ` Pain days: ${highPainDays}.`;
+                } else {
+                    insightStr += ` No patterns yet.`;
+                }
+
+                const logEntry = `📸 SYSTEM SNAPSHOT: ${timeStr} | ${insightStr}`;
+                await dbPut('breadcrumbs', {id:'cr_'+Date.now(), context: 'System', text: logEntry, date: now.toLocaleDateString()});
+                const updatedCrumbs = await dbGetAll('breadcrumbs');
+
+                const a = document.createElement('a'); 
+                a.href = URL.createObjectURL(new Blob([JSON.stringify({logs, symptoms, meds, bills, breadcrumbs: updatedCrumbs})],{type:'application/json'})); 
+                a.download='Sanctum_Logs.json'; 
+                a.click();
+                
+                if(document.getElementById('calendar-modal').classList.contains('active')) {
+                    generateInsights();
+                }
+
+                somniaAlert("Snapshot Secured", "A full somatic backup has been downloaded to your hard drive, and your current patterns have been etched into the Alchemist's memory.");
+            } catch(err) {
+                console.error("Snapshot generation failed:", err);
+                somniaAlert("Error", "Snapshot failed. See console for details.");
+            }
+        }
+        
+        async function importData(input) {
+            if(!input.files || !input.files[0]) return;
+            const r = new FileReader();
+            r.onload = async e => {
+                try {
+                    const d = JSON.parse(e.target.result);
+                    if(d.logs) for(let l of d.logs) await dbPut('logs', l);
+                    if(d.symptoms) for(let s of d.symptoms) await dbPut('symptoms', s);
+                    if(d.meds) for(let m of d.meds) await dbPut('meds', m);
+                    if(d.bills) for(let b of d.bills) await dbPut('bills', b);
+                    if(d.breadcrumbs) for(let c of d.breadcrumbs) await dbPut('breadcrumbs', c);
+                    somniaAlert("Vault Restored", "Somatic logs and libraries imported securely.");
+                    if(document.getElementById('calendar-modal').classList.contains('active')) renderCalendar();
+                } catch(err) { somniaAlert("Error", "Invalid Sanctum File."); }
+            }; 
+            r.readAsText(input.files[0]); 
+            input.value = ""; 
+        }
+
+        // --- 6. VIBE ENGINE (Audio, Particles, Canvas, Vault) ---
+        const hexColors = ['#e0e7ff', '#D4AF37', '#C2B280', '#d8b4e2', '#fb7185', '#34d399', '#fbbf24', '#ec4899', '#9ca3af', '#ffffff', '#881337', '#78350f', '#22d3ee', '#57534e', '#84cc16', '#312e81', '#ea580c', '#0891b2', '#b45309', '#bae6fd'];
+        
+        function populateColorGrid(id, cssVar) {
+            const grid = document.getElementById(id);
+            hexColors.forEach((hex) => {
+                const b = document.createElement('button');
+                b.style.width = '25px'; b.style.height = '25px'; b.style.borderRadius = '50%'; b.style.background = hex; 
+                b.style.border = '2px solid transparent'; b.style.cursor = 'pointer'; b.style.flexShrink = '0';
+                b.onclick = () => { updateVar(cssVar, hex); saveCurrentState(); };
+                grid.appendChild(b);
+            });
+        }
+
+        let actAud = {}; let masterGainValue = 1; let cLib = [];
+        const soundLibrary = [
+            { id: "rain", name: "🌧️ Gentle Rain", url: "rain.mp3" }, { id: "thunder", name: "🌩️ Thunderstorm", url: "thunder.mp3" },
+            { id: "winterwind", name: "🌬️ Winter Wind", url: "winterwind.mp3" }, { id: "owls", name: "🦉 Midnight Owls", url: "owls.mp3" },
+            { id: "raven", name: "🐦‍⬛ Raven Calls", url: "raven.mp3" }, { id: "frogs", name: "🐸 Swamp Frogs", url: "frogs.mp3" },
+            { id: "crickets", name: "🦗 Night Crickets", url: "crickets.mp3" }, { id: "fire", name: "🔥 Hearth Fire", url: "fire.mp3" },
+            { id: "simmering", name: "🍲 Simmering Pot", url: "simmeringpot.mp3" }, { id: "teacup", name: "☕ Teacup Clinks", url: "teacup.mp3" },
+            { id: "clock", name: "🕰️ Ticking Clock", url: "clock.mp3" }, { id: "cat", name: "🐾 Purring Cat", url: "cat.mp3" },
+            { id: "windchimes", name: "🎐 Wind Chimes", url: "windchimes.mp3" }, { id: "musicbox1", name: "🎶 Music Box I", url: "musicbox1.mp3" }
+        ];
+
+        function initAudio() {
+            // Direct HTML5 Audio elements are operated natively to prevent browser CORS sandboxing blocks on local filesystems
+        }
+
+        function setMasterGain(val) { 
+            masterGainValue = parseFloat(val);
+            Object.keys(actAud).forEach(id => {
+                updateTrackVolume(id);
+            });
+        }
+
+        function updateTrackVolume(id) {
+            if (actAud[id]) {
+                const targetVol = actAud[id].targetVol;
+                actAud[id].a.volume = Math.min(1.0, targetVol * masterGainValue);
+            }
+        }
+
+        async function loadCustomAudio() {
+            cLib=[]; const keys=await getAllMediaKeys(); const aKeys=keys.filter(k=>k.startsWith('aud_'));
+            for(let key of aKeys) { const b=await getMedia(key); if(b) cLib.push({id:key, name:localStorage.getItem('somnia_name_'+key)||"Sound", url:URL.createObjectURL(b)}); }
+            const allSounds = [...cLib, ...soundLibrary];
+            const mc = document.getElementById('mixer-container'); 
+            mc.innerHTML = allSounds.map(t=>`<div class="mixer-card" id="card-${t.id}"><button class="mixer-btn" onclick="toggleStem('${t.id}','${t.url}')">${t.name}</button><button class="toy-btn" style="color:#fb7185; border:none; background:transparent; display:${t.isCustom||t.id.startsWith('aud_')?'block':'none'};" onclick="delAud('${t.id}')">✕</button><input type="range" id="vol-${t.id}" class="mixer-slider" min="0" max="1" step="0.05" value="0.5" oninput="adjVol('${t.id}',this.value)"></div>`).join('');
+            Object.keys(actAud).forEach(id => { const c = document.getElementById(`card-${id}`); if(c) c.classList.add('playing'); });
+        }
+
+        function handleAudioUpload(input) {
+            if(!input.files||!input.files[0]) return; const file=input.files[0]; const key='aud_'+Date.now();
+            saveMedia(key,file).then(()=>{ localStorage.setItem('somnia_name_'+key, "Custom Audio"); loadCustomAudio(); }); input.value="";
+        }
+
+        async function delAud(id) { if(await somniaConfirm("Drop Sound?","Delete?")) { if(actAud[id]) { actAud[id].a.pause(); delete actAud[id]; } await deleteMedia(id); loadCustomAudio(); } }
+
+        function toggleStem(id, url) {
+            const c=document.getElementById(`card-${id}`);
+            if(actAud[id]) { 
+                actAud[id].a.pause(); 
+                delete actAud[id]; 
+                c.classList.remove('playing'); 
+            } else { 
+                const a=new Audio(url); 
+                a.loop=true; 
+                
+                const slider = document.getElementById(`vol-${id}`);
+                const targetVol = slider ? parseFloat(slider.value) : 0.5;
+                
+                actAud[id] = { a: a, targetVol: targetVol };
+                updateTrackVolume(id);
+                
+                a.play().then(() => {
+                    c.classList.add('playing');
+                }).catch(e => {
+                    console.warn("Audio play blocked or file missing:", e);
+                    delete actAud[id];
+                });
+            }
+        }
+
+        function adjVol(id,v) { 
+            if(actAud[id]) {
+                actAud[id].targetVol = parseFloat(v);
+                updateTrackVolume(id);
+            }
+        }
+
+        function stopAllAudio() { 
+            Object.keys(actAud).forEach(id=>{ 
+                actAud[id].a.pause(); 
+                const card = document.getElementById(`card-${id}`);
+                if(card) card.classList.remove('playing');
+                delete actAud[id]; 
+            }); 
+        }
+
+        const colors = ['lunar','noir','vellum','amethyst','crimson','emerald','solar','void','obsidian','ghost','gothic','library','y2k','vintage','cyber','twilight','autumn','abyss','sepia','frost'];
+        const glows = ['pulse','breathe','strobe','phantom','wave','flicker','aurora','radar','static','none','heartbeat','shimmer','glitch','scanner','nebula','vortex','ripple','halo','eclipse','inferno'];
+        const pList = ['dust','embers','snow','void','rain','ash','stars','bubbles','matrix','spores','leaves','glitch','runes','fireflies','fog','petals','sparks','bats','static','motes'];
+        
+        function populateGrid(id, arr, type) {
+            const grid = document.getElementById(id);
+            arr.forEach((item, index) => {
+                const b = document.createElement('button'); b.className = 'toy-btn'; b.textContent = item; if(index===0) b.classList.add('active'); 
+                b.onclick = () => {
+                    document.querySelectorAll(`#${id} .toy-btn`).forEach(x=>x.classList.remove('active')); b.classList.add('active');
+                    if(type==='color') document.documentElement.className = `${item}-mode`;
+                    if(type==='glow') document.getElementById('glow-layer').className = `glow-${item}`;
+                    if(type==='particle') window.particleType = item;
+                    saveCurrentState();
+                }; grid.appendChild(b);
+            });
+        }
+
+        window.particleType = 'dust'; window.particleCount = 50; 
+        function buildParticles(w, h) { return Array.from({length: window.particleCount}, ()=>({x:Math.random()*w, y:Math.random()*h, r:Math.random()*2+0.5, vx:(Math.random()-0.5), vy:(Math.random()-0.5), t:Math.random()*100})); }
+        function initParticles() {
+            const canvas = document.getElementById('particleCanvas'); const ctx = canvas.getContext('2d');
+            let w = canvas.width = window.innerWidth; let h = canvas.height = window.innerHeight;
+            window.addEventListener('resize', () => { w=canvas.width=window.innerWidth; h=canvas.height=window.innerHeight; particles=buildParticles(w,h); });
+            let particles = buildParticles(w,h); let lastTime = 0;
+            function loop(ts) {
+                requestAnimationFrame(loop); if(!ts) ts = performance.now(); if(ts-lastTime < 33) return; lastTime = ts;
+                ctx.clearRect(0,0,w,h);
+                let col = getComputedStyle(document.documentElement).getPropertyValue('--particle-color').trim();
+                if(col.includes('var(')) col = getComputedStyle(document.documentElement).getPropertyValue(col.match(/var\(([^)]+)\)/)[1].trim()).trim();
+                ctx.fillStyle = col; ctx.shadowBlur = 8; ctx.shadowColor = col;
+                particles.forEach((p, i) => {
+                    let spd = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--anim-speed'))||10; let mult = 10/spd;
+                    if(window.particleType==='dust'){p.x+=p.vx*mult; p.y+=p.vy*mult;} else if(window.particleType==='embers'){p.y-=(Math.abs(p.vy)+0.5)*mult; p.x+=p.vx*mult;} else{p.x+=p.vx*mult; p.y+=p.vy*mult;}
+                    if(p.x<0) p.x=w; if(p.x>w) p.x=0; if(p.y<0) p.y=h; if(p.y>h) p.y=0;
+                    ctx.beginPath(); ctx.arc(p.x,p.y,p.r,0,Math.PI*2); ctx.fill();
+                });
+            } requestAnimationFrame(loop);
+        }
+
+        async function loadCustomBackgrounds() {
+            const grid = document.getElementById('custom-bgs'); grid.innerHTML = '';
+            const keys = await getAllMediaKeys(); const bgKeys = keys.filter(k=>k.startsWith('bg_'));
+            for(let key of bgKeys) {
+                const blob = await getMedia(key); if(blob) {
+                    const name = localStorage.getItem('somnia_name_'+key) || "🖼️ Canvas";
+                    const w = document.createElement('div'); w.style.display='flex'; w.style.gap='8px';
+                    const b = document.createElement('button'); b.className='toy-btn'; b.style.flex="1"; b.textContent=name;
+                    b.onclick = () => { document.getElementById('bg-anchor').style.backgroundImage=`url('${URL.createObjectURL(blob)}')`; localStorage.setItem('somnia_active_bg_key', key); saveCurrentState(); };
+                    const d = document.createElement('button'); d.className='toy-btn'; d.innerHTML='✕'; d.style.color='#fb7185';
+                    d.onclick = async () => { if(await somniaConfirm("Drop Canvas?","Delete?")) { await deleteMedia(key); loadCustomBackgrounds(); } };
+                    w.appendChild(b); w.appendChild(d); grid.prepend(w);
+                }
+            }
+        }
+        function executeImageUpload(input) {
+            if(!input.files||!input.files[0]) return; const file = input.files[0]; const key = 'bg_'+Date.now();
+            const r = new FileReader(); r.onload = async (e) => {
+                const img = new Image(); img.onload = async () => {
+                    const c = document.createElement('canvas'); const cx = c.getContext('2d');
+                    let w=img.width, h=img.height; if(w>1920){h*=1920/w; w=1920;} c.width=w; c.height=h; cx.drawImage(img,0,0,w,h);
+                    c.toBlob(async blob => { await saveMedia(key, blob); localStorage.setItem('somnia_name_'+key, "Custom Canvas"); loadCustomBackgrounds(); }, 'image/jpeg', 0.85);
+                }; img.src = e.target.result;
+            }; r.readAsDataURL(file); input.value="";
+        }
+
+        let vaultList = JSON.parse(localStorage.getItem('somniaVault')) || [];
+        function initializeVault() {
+            if (vaultList.length === 0) {
+                vaultList.push({ n: "Default Sanctum", bc: "amethyst-mode", gc: "glow-pulse", pt: "dust", bgk: null, vs: {s: "10s", o: "0.3", b: "0.85", z: "1", pc: "#d8b4e2", gc: "rgba(216, 180, 226, 0.4)"} });
+                localStorage.setItem('somniaVault', JSON.stringify(vaultList));
+            }
+        }
+
+        function saveCurrentState() {
+            const s = { 
+                bc: document.documentElement.className, gc: document.getElementById('glow-layer').className, pt: window.particleType, bgk: localStorage.getItem('somnia_active_bg_key'), 
+                vs: {
+                    s: document.documentElement.style.getPropertyValue('--anim-speed'), o: document.documentElement.style.getPropertyValue('--glow-opac'), 
+                    b: document.documentElement.style.getPropertyValue('--bg-bright'), z: document.documentElement.style.getPropertyValue('--bg-zoom'),
+                    pc: document.documentElement.style.getPropertyValue('--particle-color'), gc: document.documentElement.style.getPropertyValue('--glow-color')
+                } 
+            };
+            localStorage.setItem('somnia_active_state', JSON.stringify(s));
+        }
+        
+        async function restoreActiveState() {
+            const str = localStorage.getItem('somnia_active_state'); const bgk = localStorage.getItem('somnia_active_bg_key');
+            if(bgk) { const b = await getMedia(bgk); if(b) document.getElementById('bg-anchor').style.backgroundImage = `url('${URL.createObjectURL(b)}')`; } 
+            else { document.getElementById('bg-anchor').style.backgroundImage = "url('sanctum.png')"; }
+            if(str) {
+                const s = JSON.parse(str); document.documentElement.className=s.bc||'amethyst-mode'; document.getElementById('glow-layer').className=s.gc||'glow-pulse'; window.particleType=s.pt||'dust';
+                if(s.vs) { 
+                    updateVar('--anim-speed', s.vs.s); updateVar('--glow-opac', s.vs.o); updateVar('--bg-bright', s.vs.b); 
+                    if(s.vs.z) { updateVar('--bg-zoom', s.vs.z); document.getElementById('zoom-slider').value = s.vs.z; }
+                    if(s.vs.pc) updateVar('--particle-color', s.vs.pc);
+                    if(s.vs.gc) updateVar('--glow-color', s.vs.gc);
+                }
+            }
+        }
+        async function savePreset() {
+            const n = await somniaPrompt("Vault Vibe", "Name setup:"); if(!n) return;
+            const s = { 
+                n, bc: document.documentElement.className, gc: document.getElementById('glow-layer').className, pt: window.particleType, bgk: localStorage.getItem('somnia_active_bg_key'), 
+                vs: { s: document.documentElement.style.getPropertyValue('--anim-speed'), o: document.documentElement.style.getPropertyValue('--glow-opac'), b: document.documentElement.style.getPropertyValue('--bg-bright'), z: document.documentElement.style.getPropertyValue('--bg-zoom'), pc: document.documentElement.style.getPropertyValue('--particle-color'), gc: document.documentElement.style.getPropertyValue('--glow-color') } 
+            };
+            vaultList.push(s); localStorage.setItem('somniaVault', JSON.stringify(vaultList)); renderVault();
+        }
+        function renderVault() {
+            const c = document.getElementById('vault-list'); c.innerHTML = vaultList.map((p,i)=>`<div class="mixer-card"><button class="mixer-btn" style="color:var(--primary);" onclick="loadPreset(${i})">▶ ${p.n}</button><button class="toy-btn" style="color:#fb7185; border:none; background:transparent;" onclick="delPreset(${i})">✕</button></div>`).join('');
+        }
+        async function delPreset(i) { if(await somniaConfirm("Drop Vibe?","Delete?")) { vaultList.splice(i,1); localStorage.setItem('somniaVault', JSON.stringify(vaultList)); renderVault(); } }
+        async function loadPreset(i) {
+            const s=vaultList[i]; document.documentElement.className=s.bc; document.getElementById('glow-layer').className=s.gc; window.particleType=s.pt;
+            if(s.bgk){ const b=await getMedia(s.bgk); if(b){ document.getElementById('bg-anchor').style.backgroundImage=`url('${URL.createObjectURL(b)}')`; localStorage.setItem('somnia_active_bg_key',s.bgk); } } else { document.getElementById('bg-anchor').style.backgroundImage="url('sanctum.png')"; localStorage.removeItem('somnia_active_bg_key'); }
+            if(s.vs){ updateVar('--anim-speed',s.vs.s); updateVar('--glow-opac',s.vs.o); updateVar('--bg-bright',s.vs.b); if(s.vs.z) { updateVar('--bg-zoom', s.vs.z); document.getElementById('zoom-slider').value = s.vs.z; } if(s.vs.pc) updateVar('--particle-color', s.vs.pc); if(s.vs.gc) updateVar('--glow-color', s.vs.gc); } saveCurrentState();
+        }
+        
+        function exportVibes() { const a = document.createElement('a'); a.href = URL.createObjectURL(new Blob([JSON.stringify({v:vaultList, s:JSON.parse(localStorage.getItem('somnia_active_state')||'{}')})],{type:'application/json'})); a.download='Sanctum_Vibes.json'; a.click(); }
+        function importVibes(input) { 
+            if(!input.files || !input.files[0]) return;
+            const r = new FileReader(); r.onload=e=>{ 
+                try { const d=JSON.parse(e.target.result); if(d.v) { vaultList=d.v; localStorage.setItem('somniaVault',JSON.stringify(vaultList)); localStorage.setItem('somnia_active_state',JSON.stringify(d.s)); restoreActiveState(); renderVault(); somniaAlert("Vibes Restored", "Aesthetic UI presets loaded."); } } catch(err) { somniaAlert("Error", "Could not parse JSON."); }
+            }; r.readAsText(input.files[0]); input.value=""; 
+        }
+
+        // === FAE CHAT INTERFACE LOGIC ===
+        function toggleFaeChat() {
+            const avatar = document.getElementById('fae-avatar');
+            const bubble = document.getElementById('fae-bubble');
+            
+            if (bubble.style.display === 'none' || !bubble.style.display) {
+                bubble.style.display = 'block';
+                avatar.classList.add('fae-talking');
+                document.getElementById('fae-input').focus();
+            } else {
+                closeFaeChat();
+            }
+        }
+
+        function closeFaeChat(event) {
+            if (event) event.stopPropagation();
+            const avatar = document.getElementById('fae-avatar');
+            const bubble = document.getElementById('fae-bubble');
+            bubble.style.display = 'none';
+            avatar.classList.remove('fae-talking');
+        }
+
+        async function sendFaeMessage() {
+            const inputEl = document.getElementById('fae-input');
+            const textEl = document.getElementById('fae-text');
+            const query = inputEl.value.trim();
+            if(!query) return;
+
+            textEl.innerHTML = `<em>*Weaving somatic light threads...*</em>`;
+            inputEl.value = '';
+
+            const apiKey = localStorage.getItem('gemini_api_key');
+            if(!apiKey) {
+                setTimeout(() => {
+                    textEl.innerHTML = `*The Fae flutters, dropping glowing dust* <br>"Ah, a beautiful heartbeat—but I am separated from the deep somatic stream! Add your API key in the Alchemist menu at the top, and I will read your somatic maps."`;
+                }, 800);
+                return;
+            }
+
+            const systemPrompt = `You are a warm, intuitive, somatic-attuned Fae guide inside a digital self-care sanctuary named SomniaSanctum. Keep your responses short (2-3 sentences), soothing, and centered around body awareness, physical alignment, calming the nervous system, and rest. Answer this somatic query: "${query}"`;
+
+            try {
+                const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ contents: [{ parts: [{ text: systemPrompt }] }] })
+                });
+                const data = await response.json();
+                if (data.error) {
+                    textEl.innerText = `*Flickers* The magic failed: ${data.error.message}`;
+                    return;
+                }
+                let replyText = data.candidates[0].content.parts[0].text.trim();
+                textEl.innerText = replyText;
+            } catch(e) {
+                textEl.innerText = `*Fades slightly* Something interrupted my link to the life-stream. Try whispering again.`;
+                console.error(e);
+            }
+        }
+
+        // Boot Init
+        document.addEventListener('DOMContentLoaded', async () => {
+            initializeVault();
+            populateGrid('color-grid', colors, 'color'); 
+            populateGrid('particle-grid', pList, 'particle'); 
+            populateGrid('glow-grid', glows, 'glow');
+            populateColorGrid('particle-color-grid', '--particle-color');
+            populateColorGrid('glow-color-grid', '--glow-color');
+
+            await loadCustomBackgrounds(); await loadCustomAudio(); initParticles();
+            
+            setInterval(() => {
+                const now = new Date(); document.getElementById('clock-widget').textContent = now.toLocaleTimeString([], {hour:'2-digit',minute:'2-digit'});
+                document.getElementById('date-widget').textContent = now.toLocaleDateString([], {weekday:'long',month:'long',day:'numeric'});
+            }, 1000);
+            
+            if(localStorage.getItem('gemini_api_key')) document.getElementById('gemini-key-input').value = localStorage.getItem('gemini_api_key');
+            
+            // Fae Chat Enter Key Bind
+            const faeInput = document.getElementById('fae-input');
+            if(faeInput) {
+                faeInput.addEventListener('keydown', (e) => {
+                    if (e.key === 'Enter') sendFaeMessage();
+                });
+            }
+
+            renderVault(); 
+        });
+
+        // --- PROGRESSIVE WEB APP REGISTRATION ---
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('sw.js').then((registration) => {
+                    console.log('Sanctum ServiceWorker armed. Scope:', registration.scope);
+                }).catch((error) => {
+                    console.error('Sanctum ServiceWorker failed:', error);
+                });
+            });
+        }
+    </script>
+</body>
+</html>app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <title>SOMNIASANCTUM // SANCTUARY</title>
     
